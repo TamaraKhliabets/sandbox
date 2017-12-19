@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import style from '../style';
 import ProductLink from './ProductLink';
+import Buttons from './Buttons';
+import '../styles.css';
 
 export default class ProductList extends Component {
     render() {
-        let productNodes = this.props.data.map(p => {
+      let activePage = this.props.products.slice(20, 40);
+        let productNodes = activePage.map(p => {
                 return (
-                    <li key={p['_id']} style={ style.listItem }>
+                    <li key={p['_id']} className="listItem">
                         <ProductLink
                             key={ p['_id'] }
                             picture={ p.picture }
@@ -20,9 +22,10 @@ export default class ProductList extends Component {
 
         return (
             <div>
-                <ul style={ style.list }>
+                <ul className="list">
                     { productNodes }
                 </ul>
+              <Buttons products={ this.props.products }/>
             </div>
         )
     }
